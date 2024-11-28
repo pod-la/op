@@ -14,12 +14,14 @@ secondary_prompt:
   background: transparent
 transient_prompt:
   template: "<p:orange,transparent>\ue0b6</><,p:orange> \uea83 {{ .Folder }} </><p:orange,transparent>\ue0b0</> "
-  foreground: p:black
+  #template: "{{ .Folder }} \ueb08"
+  foreground: p:white
   background: transparent
 console_title_template: "{{ .Shell }} in {{ .Folder }}"
 blocks:
 - type: prompt
   alignment: left
+  newline: true
   segments:
   - leading_diamond: "\ue0b6"
 #    trailing_diamond: 
@@ -32,14 +34,15 @@ blocks:
     style: diamond
   - properties:
       style: agnoster_short
-    # template: " \uea83 {{ path .Path .Location }} "
-    template: " \uea83 {{ path .PWD .Location }} "
+    template: " \uea83 {{ path .Path .Location }} "
+    #template: " \uea83 {{ path .PWD .Location }} "
     foreground: p:white
     powerline_symbol: 
     background: p:orange
     type: path
     #max_width: 30
     style: powerline
+    alias: Folder
   - properties:
       branch_max_length: 25
       fetch_status: true
@@ -76,7 +79,8 @@ blocks:
     style: diamond
     background_templates:
     - "{{ if gt .Code 0 }}p:red{{ end }}"
-- type: rprompt
+- type: prompt
+  alignment: right
   segments:
   - properties:
       display_mode: files
@@ -117,19 +121,20 @@ blocks:
   alignment: left
   newline: true
   segments:
-  - leading_diamond: 
-    trailing_diamond: 
-    template: "  "
-    foreground: p:black
-    background: p:yellow
-    type: session
-    style: diamond    
-- type: prompt
-  alignment: right
-  newline: true
-  segments:
-    - type: plaintext
-      template: ""  
+    - leading_diamond: "\ue0b6"
+      #trailing_diamond: "\ue0b0"
+      template: "{{ .Icon }} "
+      foreground: p:black
+      background: p:green
+      type: os
+      style: diamond
+    - trailing_diamond: "\ue0b0"
+      # leading_diamond: "\ue0b6"
+      template: "{{ .HostName }} "
+      foreground: p:black
+      background: p:green
+      type: session
+      style: diamond
 tooltips:
 - properties:
     display_default: true
