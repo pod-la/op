@@ -17,7 +17,7 @@ transient_prompt:
   #template: "{{ .Folder }} \ueb08"
   foreground: p:white
   background: transparent
-console_title_template: "{{ .Shell }} in {{ .Folder }}"
+console_title_template: "{{ if .WSL }}WSL: {{ end }}{{ .HostName }} in {{ .Folder }}"
 blocks:
 - type: prompt
   alignment: left
