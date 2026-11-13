@@ -133,6 +133,8 @@ blocks:
       template: "{{ .HostName }} "
       foreground: p:black
       background: p:green
+      background_templates:
+      - '{{ if (glob "10.51.0.*" (list (ip "10.51.0.0/24"))) }}p:blue{{ end }}'
       type: session
       style: diamond
 tooltips:
